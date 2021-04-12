@@ -13,19 +13,38 @@ inquirer
     {
       type: 'input',
       name: 'name',
-      message: 'What is your name?',
+      message: 'What is the title of the project?',
     },
+
+    {
+        type: 'input',
+        name: 'name',
+        message: 'Provide a description of the project',
+      },
+
+    {
+        type: 'input',
+        name: 'name',
+        message: 'How is the applications installed?',
+      },
+
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Enter Github username',
+      },
+
     {
       type: 'checkbox',
-      message: 'What languages do you know?',
+      message: 'What license(s) are utilized with this project?',
       name: 'stack',
-      choices: ['HTML', 'CSS', 'JavaScript', 'MySQL'],
+      choices: ['MIT', 'CSS', 'JavaScript', 'MySQL'],
     },
     {
       type: 'list',
-      message: 'What is your preferred method of communication?',
+      message: 'What license application is covered under?',
       name: 'contact',
-      choices: ['email', 'phone', 'telekinesis'],
+      choices: ['MIT', 'GNU GPLv3', 'None'],
     },
   ])
   .then((data) => {
