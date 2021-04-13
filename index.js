@@ -1,65 +1,94 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 const genrateMarkdown = require('./generateMarkdown.js')
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+// An array of questions for user input
+const questions = [
 
+{
+    type: 'input',
+    message: 'What is the title of the project?',
+    name: 'title'
+   },
+   {
+    type: 'input',
+    message: 'Provide a short description of the project:',
+    name: 'description',
+   },
+   {
+    type: 'input',
+    message: 'How was the project created, including technologies used?',
+    name: 'process',
+   },
+   {
+    type: 'input',
+    message: 'Please include installation instructions:',
+    name: 'installation',
+   },
+   {
+    type: 'input',
+    message: 'Please include an example of usage:',
+    name: 'usage',
+   },
+   {
+    type: 'input',
+    message: 'Please include a screenshot of the project:',
+    name: 'screenshot',
+   },
+   {
+    type: 'input',
+    message: 'How can someone contribute to the project?',
+    name: 'contributing',
+   },
+   {
+    type: 'input',
+    message: 'What command lines are required for the application?',
+    name: 'tests',
+   },
+   {
+    type: 'input',
+    message: 'What is your GitHub username?',
+    name: 'github',
+   },
+   {
+    type: 'input',
+    message: 'What is your email address?',
+    name: 'email',
+   },
+   {
+    type: 'list',
+    message: 'Please select a license, if applicable:',
+    name: 'license',
+    choices: ['MIT', 'Apache', 'GPLv3', 'none'],
+   }
+];
 
-// TODO: Create an array of questions for user input
-const questions = [];
+// Function to write README file
+function writeToFile(fileName, template) {
+    fs.writeFile(fileName, template, function (err) {
+        console.log(fileName);
 
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'What is the title of the project?',
-    },
+        if (err) {
+            return console.log(err);
+        } else {
+            return console.log("Success, readme file has been created!");
+        }
+    })
+}
 
-    {
-        type: 'input',
-        name: 'name',
-        message: 'Provide a description of the project',
-      },
+//  This is the function to initialize app
 
-    {
-        type: 'input',
-        name: 'name',
-        message: 'How is the applications installed?',
-      },
-
-      {
-        type: 'input',
-        name: 'name',
-        message: 'Enter Github username',
-      },
-
-    {
-      type: 'checkbox',
-      message: 'What license(s) are utilized with this project?',
-      name: 'stack',
-      choices: ['MIT', 'CSS', 'JavaScript', 'MySQL'],
-    },
-    {
-      type: 'list',
-      message: 'What license application is covered under?',
-      name: 'contact',
-      choices: ['MIT', 'GNU GPLv3', 'None'],
-    },
-  ])
-  .then((data) => {
-    const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
-
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-      err ? console.log(err) : console.log('Success!')
-    );
-  });
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer
+        .prompt(questions)
+        .then((answers) => {
+            // console.log(answers);
+            var readme = generateMarkdown(answers);
+            // console.log(readme);
+            writeToFile('./Generated-README/README.md', readme);
+        });
+}
 
 // Function call to initialize app
 init();
