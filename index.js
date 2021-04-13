@@ -1,5 +1,5 @@
 // Packages needed for this application
-const genrateMarkdown = require('./generateMarkdown.js')
+const markdown = require('./util/generateMarkdown');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
@@ -84,7 +84,7 @@ function init() {
         .prompt(questions)
         .then((answers) => {
             // console.log(answers);
-            var readme = generateMarkdown(answers);
+            var readme = markdown(answers);
             // console.log(readme);
             writeToFile('./Generated-README/README.md', readme);
         });

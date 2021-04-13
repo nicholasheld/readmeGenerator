@@ -5,8 +5,8 @@ if (license === 'MIT') {
   return ('![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)')
 } else if (license === 'Apache') {
   return ('![License: Apache](https://img.shields.io/badge/License-Apache%202.0-blue.svg)')
-} else if (license === 'GPLv3') {
-  return ('![License: GPL v3](https://img.shields.io/badge/License-GPL%20v2-blue.svg)')
+} else if (license === 'GPLv2') {
+  return ('![License: GPLv2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)')
 } else if (license === 'none') {
   return ('')
 }
